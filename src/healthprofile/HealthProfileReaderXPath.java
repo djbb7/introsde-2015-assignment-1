@@ -115,6 +115,11 @@ public class HealthProfileReaderXPath {
 
 	public void printAllPeople(){
 		System.out.println("Printing all people in "+XML_LOCATION);
+
+		System.out.println ("\n-----------------------------");
+	    System.out.format("%s%10s%15s%15s%15s%15s%10s%10s", "ID", "Last Name", "First Name", "Birthdate", "Last Update", "Weight", "Height", "BMI");
+	    System.out.println ("\n-----------------------------");
+
 		try {
 			NodeList persons = getAllPeople();
 			printPeople(persons);
