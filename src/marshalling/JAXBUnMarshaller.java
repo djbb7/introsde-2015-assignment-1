@@ -1,15 +1,24 @@
 package marshalling;
 
-import marshalling.generated.*;
+import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
-import javax.xml.bind.*;
-import javax.xml.validation.SchemaFactory;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.ValidationEvent;
+import javax.xml.bind.ValidationEventHandler;
+import javax.xml.bind.ValidationEventLocator;
 import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+
+import marshalling.generated.PeopleType;
+import marshalling.generated.PersonType;
 
 import org.xml.sax.SAXException;
-
-import java.io.*;
-import java.util.List;
 
 public class JAXBUnMarshaller {
 	public void unMarshall(File xmlDocument) {
@@ -32,20 +41,34 @@ public class JAXBUnMarshaller {
 
 			PeopleType people = peopleElement.getValue();
 
-
 			List<PersonType> personList = people.getPerson();
 			
+			System.out.println ("--------------------------------------------------------------------------------------------------------------------");
+			System.out.format("%5s%20s%20s%15s%15s%15s%10s%10s", "ID", "First Name", "Last Name", "Birthdate", "Last Update", "Weight", "Height", "BMI");
+			System.out.println ("\n--------------------------------------------------------------------------------------------------------------------");
+
+			SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+
 			for (int i = 0; i < personList.size(); i++) {
 
 				PersonType person = (PersonType) personList.get(i);
+				String prettyBirthdate = "";
+				String prettyUpdate = "";
+				try {
+					prettyBirthdate =fmt.format(fmt.parse(person.getBirthdate().toString()));
+					prettyUpdate = fmt.format(fmt.parse(person.getHealthprofile().getLastupdate().toString()));
+				} catch (ParseException e){
+				}
+					System.out.println(String.format("%5d%20s%20s%15s%15s%15s%10s%10s", 
+						person.getId(), 
+						person.getFirstname(), 
+						person.getLastname(), 
+						prettyBirthdate, 
+						prettyUpdate, 
+						person.getHealthprofile().getWeight(),
+						person.getHealthprofile().getHeight(), 
+						person.getHealthprofile().getBmi()));
 
-				System.out.println(String.format(
-						"ID: %d Name: %s Surname: %s Birthdate: %s",
-						person.getId(),
-						person.getFirstname(),
-						person.getLastname(),
-						person.getBirthdate()
-						));
 			}
 		} catch (JAXBException e) {
 			System.out.println(e.toString());

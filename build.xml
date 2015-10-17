@@ -184,6 +184,8 @@
 	</target>
 
 	<target name="execute.printAllPeople">
+   	    <echo message="-> Print all people in detail" />
+	    <echo message="" />
 		<java classname="healthprofile.HealthProfileReaderXPath"
 			classpath="${build.dir}">
 			<arg line="printAll" />
@@ -196,6 +198,8 @@
 		</java>
 	</target>
 	<target name="execute.printHealthProfile">
+   	    <echo message="-> Print Health Profile for person with ID=5 " />
+	    <echo message="" />
 	    <java classname="healthprofile.HealthProfileReaderXPath"
 	        classpath="${build.dir}">
 	        <arg line="printHealthProfile" />
@@ -209,6 +213,8 @@
 	    </java>
 	</target>
 	<target name="execute.printByWeight">
+   	    <echo message="-> Print all people with Weight&gt;90 " />
+	    <echo message="" />
 	    <java classname="healthprofile.HealthProfileReaderXPath"
 	        classpath="${build.dir}">
 	        <arg line="printByWeight" />
@@ -222,6 +228,8 @@
 	    </java>
 	</target>
 	<target name="execute.marshallXML">
+	    <echo message="-> Marshalling to XML file" />
+	    <echo message="" />
 	    <java classname="marshalling.JAXBMarshaller"
 	        classpath="${build.dir}">
 	        <arg line="XML" />
@@ -234,6 +242,8 @@
 	    </java>
 	</target>
 	<target name="execute.marshallJSON">
+	    <echo message="-> Marshalling to JSON file" />
+	    <echo message="" />
 	    <java classname="marshalling.JAXBMarshaller"
 	        classpath="${build.dir}">
 	        <arg line="JSON" />
@@ -247,6 +257,8 @@
 	</target>
 	
 	<target name="execute.unmarshallXML">
+	    <echo message="-> Unmarshalling XML file" />
+	    <echo message="" />
 	    <java classname="marshalling.JAXBUnMarshaller"
 	        classpath="${build.dir}">
 	        <arg line="JSON" />

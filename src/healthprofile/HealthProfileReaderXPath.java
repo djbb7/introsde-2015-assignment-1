@@ -116,11 +116,9 @@ public class HealthProfileReaderXPath {
 
 
 	public void printAllPeople(){
-		System.out.println("Printing all people in "+XML_LOCATION);
-
-		System.out.println ("\n-----------------------------------------------------------------------------------------------------");
+		System.out.println ("--------------------------------------------------------------------------------------------------------------------");
 		System.out.format("%5s%20s%20s%15s%15s%15s%10s%10s", "ID", "First Name", "Last Name", "Birthdate", "Last Update", "Weight", "Height", "BMI");
-		System.out.println ("\n-----------------------------------------------------------------------------------------------------");
+		System.out.println ("\n--------------------------------------------------------------------------------------------------------------------");
 
 		try {
 			NodeList persons = getAllPeople();
@@ -197,46 +195,58 @@ public class HealthProfileReaderXPath {
 		}
 
 		try {
-			System.out.println(String.format("People who weigh %s%.2fkg",op,weight));
+			System.out.println(String.format("People with weight%s%.2fkg",op,weight));
+
+			System.out.println ("\n--------------------------------------------------------------------------------------------------------------------");
+			System.out.format("%5s%20s%20s%15s%15s%15s%10s%10s", "ID", "First Name", "Last Name", "Birthdate", "Last Update", "Weight", "Height", "BMI");
+			System.out.println ("\n--------------------------------------------------------------------------------------------------------------------");
+
 			NodeList people = getPersonsByWeight(op, weight);
 			printPeople(people);
 		} catch (XPathExpressionException e){
-			//System.out.println("Error processing your request. Please check the syntax. '>', '<', or '=' followed by the weight, everything in simple quotes.");
-			//System.out.println("Example: '<23'");
 			System.out.println(e.getMessage());
 		}
 	}
 
 	public void printHealthProfile(int idPerson){
+		String update="", weight="", height="", bmi="";
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+
 		try {
 			Node healthProfile = findHealthProfileByPersonId(idPerson);
 			if(healthProfile == null){
 				System.out.println(String.format("Person with id %d not found.",idPerson));
 			} else {
 				System.out.println(String.format("Health Profile for <<%s>> (ID=%d)",getFullnameById(idPerson),idPerson));
-				printHealthProfile(healthProfile);
+				System.out.println ("\n-------------------------------------------------------");
+				System.out.format("%15s%15s%10s%10s", "Last Update", "Weight", "Height", "BMI");
+				System.out.println ("\n-------------------------------------------------------");
+
+				NodeList hpDetails = healthProfile.getChildNodes();
+				for(int k=0; k<hpDetails.getLength(); k++){
+					Node hpDetail = hpDetails.item(k);
+					if(hpDetail.getNodeName().equals("lastupdate")){
+						try {
+							update = fmt.format(fmt.parse(hpDetail.getTextContent()));
+						} catch (ParseException e) {
+							
+						}
+					} else if(hpDetail.getNodeName().equals("weight")){
+						weight = hpDetail.getTextContent();
+					} else if(hpDetail.getNodeName().equals("height")){
+						height = hpDetail.getTextContent();
+					} else if(hpDetail.getNodeName().equals("bmi")){
+						bmi = hpDetail.getTextContent();
+					}
+				}
+				System.out.println(String.format("%15s%15s%10s%10s", update, weight, height, bmi));
+
 			}
 		} catch (XPathExpressionException e) {
 			System.out.println(String.format("Person with id %d not found.",idPerson));
 		}
 	}
 
-	private void printHealthProfile(Node profile){
-		NodeList hpDetails = profile.getChildNodes();
-		//System.out.println(detail.getTextContent());
-		for(int k=0; k<hpDetails.getLength(); k++){
-			Node hpDetail = hpDetails.item(k);
-			if(hpDetail.getNodeName().equals("lastupdate")){
-				System.out.println("\tLast Update: "+hpDetail.getTextContent());
-			} else if(hpDetail.getNodeName().equals("weight")){
-				System.out.println("\tWeight: "+hpDetail.getTextContent()+"kg");
-			} else if(hpDetail.getNodeName().equals("height")){
-				System.out.println("\tHeight: "+hpDetail.getTextContent()+"m");
-			} else if(hpDetail.getNodeName().equals("bmi")){
-				System.out.println("\tBMI: "+hpDetail.getTextContent());
-			}
-		}
-	}
 
 	/**
 	 * The health profile reader gets information from the command line about
