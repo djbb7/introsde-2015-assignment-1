@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<people>
+  <person id="0001">
+    <firstname>Francesco</firstname>
+    <lastname>Totti</lastname>
+    <birthdate>1984-09-20T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2013-02-10T18:00:00.000+02:00</lastupdate> 
+      <weight>82</weight>
+      <height>1.80</height>
+      <bmi>25.30</bmi>
+    </healthprofile>
+  </person>
+  <person id="0002">
+    <firstname>Giuseppe</firstname>
+    <lastname>Rossi</lastname>
+    <birthdate>1984-02-10T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2012-09-10T18:00:00.000+02:00</lastupdate> 
+      <weight>105</weight>
+      <height>1.73</height>
+      <bmi>24.05</bmi>
+    </healthprofile>
+  </person>
+  <person id="0003">
+    <firstname>Andrea</firstname>
+    <lastname>Pirlo</lastname>
+    <birthdate>1980-12-05T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2015-09-20T18:00:00.000+02:00</lastupdate> 
+      <weight>68</weight>
+      <height>1.77</height>
+      <bmi>21.70</bmi>
+    </healthprofile>
+  </person>
+  <person id="0004">
+    <firstname>Carlos</firstname>
+    <lastname>Tévez</lastname>
+    <birthdate>1994-01-27T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2010-05-01T18:00:00.000+02:00</lastupdate> 
+      <weight>91</weight>
+      <height>1.73</height>
+      <bmi>25.05</bmi>
+    </healthprofile>
+  </person>
+  <person id="0005">
+    <firstname>Gonzalo</firstname>
+    <lastname>Higuaín</lastname>
+    <birthdate>1996-03-07T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2008-02-25T18:00:00.000+02:00</lastupdate> 
+      <weight>82</weight>
+      <height>1.84</height>
+      <bmi>24.22</bmi>
+    </healthprofile>
+  </person>
+  <person id="0006">
+    <firstname>Robson</firstname>
+    <lastname>de Souza</lastname>
+    <birthdate>1987-07-30T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2015-06-06T18:00:00.000+02:00</lastupdate> 
+      <weight>60</weight>
+      <height>1.72</height>
+      <bmi>20.28</bmi>
+    </healthprofile>
+  </person>
+  <person id="0007">
+    <firstname>Adem</firstname>
+    <lastname>Ljajić</lastname>
+    <birthdate>1964-11-21T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2002-02-08T18:00:00.000+02:00</lastupdate> 
+      <weight>74</weight>
+      <height>1.81</height>
+      <bmi>22.58</bmi>
+    </healthprofile>
+  </person>
+  <person id="0008">
+    <firstname>Víctor</firstname>
+    <lastname>Ibarbo</lastname>
+    <birthdate>1944-05-04T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2007-09-20T18:00:00.000+02:00</lastupdate> 
+      <weight>78</weight>
+      <height>1.88</height>
+      <bmi>22.06</bmi>
+    </healthprofile>
+  </person>
+  <person id="0009">
+    <firstname>Angelo</firstname>
+    <lastname>Ogbonna</lastname>
+    <birthdate>1976-06-15T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2012-01-07T18:00:00.000+02:00</lastupdate> 
+      <weight>86</weight>
+      <height>1.91</height>
+      <bmi>23.57</bmi>
+    </healthprofile>
+  </person>
+  <person id="0010">
+    <firstname>M'Baye</firstname>
+    <lastname>Niang</lastname>
+    <birthdate>1988-08-28T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2013-01-03T18:00:00.000+02:00</lastupdate> 
+      <weight>75</weight>
+      <height>1.84</height>
+      <bmi>22.15</bmi>
+    </healthprofile>
+  </person>
+  <person id="0011">
+    <firstname>Maicon</firstname>
+    <lastname>Douglas Sisenando</lastname>
+    <birthdate>1975-04-20T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2011-05-27T18:00:00.000+02:00</lastupdate> 
+      <weight>77</weight>
+      <height>1.84</height>
+      <bmi>22.74</bmi>
+    </healthprofile>
+  </person>
+  <person id="0012">
+    <firstname>Lorenzo</firstname>
+    <lastname>Insigne</lastname>
+    <birthdate>1991-08-03T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2014-07-10T18:00:00.000+02:00</lastupdate> 
+      <weight>59</weight>
+      <height>1.63</height>
+      <bmi>22.20</bmi>
+    </healthprofile>
+  </person>
+  <person id="0013">
+    <firstname>Mario</firstname>
+    <lastname>Gomez</lastname>
+    <birthdate>1980-12-20T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2010-12-23T18:00:00.000+02:00</lastupdate> 
+      <weight>88</weight>
+      <height>1.89</height>
+      <bmi>24.63</bmi>
+    </healthprofile>
+  </person>
+  <person id="0014">
+    <firstname>Marek</firstname>
+    <lastname>Hamšik</lastname>
+    <birthdate>1985-08-24T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2014-03-25T18:00:00.000+02:00</lastupdate> 
+      <weight>79</weight>
+      <height>1.83</height>
+      <bmi>23.58</bmi>
+    </healthprofile>
+  </person>
+  <person id="0015">
+    <firstname>Miralem</firstname>
+    <lastname>Pjanić</lastname>
+    <birthdate>1993-02-15T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2014-03-14T18:00:00.000+02:00</lastupdate> 
+      <weight>68</weight>
+      <height>1.80</height>
+      <bmi>20.98</bmi>
+    </healthprofile>
+  </person>
+  <person id="0016">
+    <firstname>Juan</firstname>
+    <lastname>Cuadrado</lastname>
+    <birthdate>1987-04-16T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2014-02-01T18:00:00.000+02:00</lastupdate> 
+      <weight>66</weight>
+      <height>1.76</height>
+      <bmi>21.30</bmi>
+    </healthprofile>
+  </person>
+  <person id="0017">
+    <firstname>Fernando</firstname>
+    <lastname>Llorente Torres</lastname>
+    <birthdate>1983-05-09T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2013-07-06T18:00:00.000+02:00</lastupdate> 
+      <weight>90</weight>
+      <height>1.95</height>
+      <bmi>23.66</bmi>
+    </healthprofile>
+  </person>
+  <person id="0018">
+    <firstname>Luiz</firstname>
+    <lastname>Frello Filho Jorge</lastname>
+    <birthdate>1983-07-21T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2012-06-22T18:00:00.000+02:00</lastupdate> 
+      <weight>65</weight>
+      <height>1.80</height>
+      <bmi>20.06</bmi>
+    </healthprofile>
+  </person>
+  <person id="0019">
+    <firstname>Ignazio</firstname>
+    <lastname>Abate</lastname>
+    <birthdate>1987-04-21T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2011-09-30T18:00:00.000+02:00</lastupdate> 
+      <weight>73</weight>
+      <height>1.80</height>
+      <bmi>22.53</bmi>
+    </healthprofile>
+  </person>
+  <person id="0020">
+    <firstname>Mattia</firstname>
+    <lastname>Perin</lastname>
+    <birthdate>1936-02-26T18:00:00.000+02:00</birthdate>
+    <healthprofile>
+      <lastupdate>2001-03-14T18:00:00.000+02:00</lastupdate> 
+      <weight>74</weight>
+      <height>1.88</height>
+      <bmi>20.93</bmi>
+    </healthprofile>
+  </person>
+</people>
