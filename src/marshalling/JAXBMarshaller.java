@@ -117,10 +117,9 @@ public class JAXBMarshaller {
 	}
 
 	public static void main(String[] argv) {
-		String xmlDocument = "catalog.xml";
-		String jsonDocument = "catalog.json";
+		String saveDocument = argv[0];
 		
-		String command = argv[0];
+		String command = argv[1];
 		if(command == null){
 			System.err.println("No command provided. Must pass one of:");
 			System.err.println("\tXML: to generate an XML file");
@@ -130,9 +129,9 @@ public class JAXBMarshaller {
 		JAXBMarshaller jaxbMarshaller = new JAXBMarshaller();
 
 		if(command.equals("XML")){
-			jaxbMarshaller.generateXMLDocument(new File(xmlDocument));
+			jaxbMarshaller.generateXMLDocument(new File(saveDocument));
 		} else if (command.equals("JSON")){
-			jaxbMarshaller.generateJSONDocument(new File(jsonDocument));
+			jaxbMarshaller.generateJSONDocument(new File(saveDocument));
 		}
 	}
 }

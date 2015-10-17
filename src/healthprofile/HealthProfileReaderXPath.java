@@ -25,7 +25,7 @@ public class HealthProfileReaderXPath {
 
 	Document doc;
 	XPath xpath;
-	public static final String XML_LOCATION = "xml/people.xml";
+	public static String XML_LOCATION;
 
 	public HealthProfileReaderXPath(){
 		Locale.setDefault(Locale.US);
@@ -257,8 +257,12 @@ public class HealthProfileReaderXPath {
 	 */
 	public static void main(String[] args) throws ParserConfigurationException, SAXException,
 	IOException, XPathExpressionException {
-
-		String command = args[0];
+		HealthProfileReaderXPath.XML_LOCATION = args[0];
+		String command = args[1];
+		if(HealthProfileReaderXPath.XML_LOCATION == null){
+			System.err.println("No XML file specified");
+			return;
+		}
 		if(command==null){
 			System.err.println("No command specified.");
 			return;
@@ -270,10 +274,10 @@ public class HealthProfileReaderXPath {
 		if(command.equals("printAll")){
 			reader.printAllPeople();
 		} else if (command.equals("printHealthProfile")){
-			int ID = Integer.valueOf(args[1]);
+			int ID = Integer.valueOf(args[2]);
 			reader.printHealthProfile(ID);
 		} else if (command.equals("printByWeight")){
-			reader.printPeopleByWeight(args[1]);
+			reader.printPeopleByWeight(args[2]);
 		}
 
 	}

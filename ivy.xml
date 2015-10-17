@@ -21,7 +21,7 @@
        xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
     <info
         organisation="introsde"
-        module="lab04"
+        module="introsde-2015-assignment-1"
         status="integration">
 	</info>
 	
@@ -43,7 +43,6 @@
         <dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.4.2">
             <artifact name="jackson-annotations" type="jar"/>
         </dependency>
-        <dependency org="net.sf.dozer" name="dozer" rev="5.5.1"/>
         <dependency org="joda-time" name="joda-time" rev="2.4"/>
         <dependency org="org.slf4j" name="slf4j-nop" rev="1.7.7"/>
         

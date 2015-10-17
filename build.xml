@@ -48,6 +48,9 @@
 	<property name="src.dir" value="src" />
 	<property name="lib.dir" value="lib" />
 	<property name="xjc.package" value="marshalling.generated" />
+	<property name="xml.people" value="xml/people.xml" />
+	<property name="json.people.marshall" value="marshalled.people.json" />
+	<property name="xml.people.marshall" value="marshalled.people.xml" /> 
 
 	<!-- ================================= target: resolve downloads the dependencies 
 		to your lib folder ================================= -->
@@ -109,85 +112,13 @@
 		</copy>
 	</target>
 
-	<target name="execute.HPWriter">
-		<echo
-			message="Executing Health Profile Writer: will produce a people.xml in home folder" />
-		<java classname="HealthProfileWriter" classpath="${build.dir}">
-			<classpath>
-				<fileset dir="${lib.dir}">
-					<include name="**/*.jar" />
-					<include name="*.jar" />
-				</fileset>
-			</classpath>
-		</java>
-	</target>
-
-	<target name="execute.HPReader">
-		<echo
-			message="Executing Health Profile Reader: will read the people.xml in home folder and print one at a time" />
-		<java classname="HealthProfileReader" classpath="${build.dir}">
-			<classpath>
-				<fileset dir="${lib.dir}">
-					<include name="**/*.jar" />
-					<include name="*.jar" />
-				</fileset>
-			</classpath>
-		</java>
-	</target>
-
-	<target name="execute.JavaToXML">
-		<echo message="Executing JavaToXML" />
-		<java classname="bookstore.JavaToXML" classpath="${build.dir}">
-			<classpath>
-				<fileset dir="${lib.dir}">
-					<include name="**/*.jar" />
-					<include name="*.jar" />
-				</fileset>
-			</classpath>
-		</java>
-	</target>
-
-	<target name="execute.JAXBMarshaller">
-		<echo message="Executing JAXBMarshaller" />
-		<java classname="marshalling.JAXBMarshaller" classpath="${build.dir}">
-			<classpath>
-				<fileset dir="${lib.dir}">
-					<include name="**/*.jar" />
-					<include name="*.jar" />
-				</fileset>
-			</classpath>
-		</java>
-	</target>
-
-	<target name="execute.JAXBUnMarshaller">
-		<echo message="Executing JAXBUnMarshaller" />
-		<java classname="marshalling.JAXBUnMarshaller" classpath="${build.dir}">
-			<classpath>
-				<fileset dir="${lib.dir}">
-					<include name="**/*.jar" />
-					<include name="*.jar" />
-				</fileset>
-			</classpath>
-		</java>
-	</target>
-
-	<target name="execute.dozerExample">
-		<echo message="Executing Dozer Example" />
-		<java classname="dozerproject.DozerMapperTest" classpath="${build.dir}">
-			<classpath>
-				<fileset dir="${lib.dir}">
-					<include name="**/*.jar" />
-					<include name="*.jar" />
-				</fileset>
-			</classpath>
-		</java>
-	</target>
 
 	<target name="execute.printAllPeople">
-   	    <echo message="-> Print all people in detail" />
-	    <echo message="" />
+		<echo message="-> Print all people in detail (Reading from: ${xml.people})" />
+		<echo message="" />
 		<java classname="healthprofile.HealthProfileReaderXPath"
 			classpath="${build.dir}">
+			<arg line="${xml.people}" />
 			<arg line="printAll" />
 			<classpath>
 				<fileset dir="${lib.dir}">
@@ -198,79 +129,82 @@
 		</java>
 	</target>
 	<target name="execute.printHealthProfile">
-   	    <echo message="-> Print Health Profile for person with ID=5 " />
-	    <echo message="" />
-	    <java classname="healthprofile.HealthProfileReaderXPath"
-	        classpath="${build.dir}">
-	        <arg line="printHealthProfile" />
-	        <arg line="5" />
-	        <classpath>
-	            <fileset dir="${lib.dir}">
+		<echo message="-> Print Health Profile for person with ID=5 (Reading from: ${xml.people})" />
+		<echo message="" />
+		<java classname="healthprofile.HealthProfileReaderXPath"
+			classpath="${build.dir}">
+			<arg line="${xml.people}" />
+			<arg line="printHealthProfile" />
+			<arg line="5" />
+			<classpath>
+				<fileset dir="${lib.dir}">
 					<include name="**/*.jar" />
 					<include name="*.jar" />
 				</fileset>
-	        </classpath>
-	    </java>
+			</classpath>
+		</java>
 	</target>
 	<target name="execute.printByWeight">
-   	    <echo message="-> Print all people with Weight&gt;90 " />
-	    <echo message="" />
-	    <java classname="healthprofile.HealthProfileReaderXPath"
-	        classpath="${build.dir}">
-	        <arg line="printByWeight" />
-	        <arg line="'&gt;90'" />
-	        <classpath>
-	            <fileset dir="${lib.dir}">
+		<echo message="-> Print all people with Weight&gt;90 (Reading from: ${xml.people})" />
+		<echo message="" />
+		<java classname="healthprofile.HealthProfileReaderXPath"
+			classpath="${build.dir}">
+			<arg line="${xml.people}" />
+			<arg line="printByWeight" />
+			<arg line="'&gt;90'" />
+			<classpath>
+				<fileset dir="${lib.dir}">
 					<include name="**/*.jar" />
 					<include name="*.jar" />
 				</fileset>
-	        </classpath>
-	    </java>
+			</classpath>
+		</java>
 	</target>
 	<target name="execute.marshallXML">
-	    <echo message="-> Marshalling to XML file" />
-	    <echo message="" />
-	    <java classname="marshalling.JAXBMarshaller"
-	        classpath="${build.dir}">
-	        <arg line="XML" />
-	        <classpath>
-	            <fileset dir="${lib.dir}">
+		<echo message="-> Marshalling to XML file (Saving to: ${xml.people.marshall})" />
+		<echo message="" />
+		<java classname="marshalling.JAXBMarshaller" classpath="${build.dir}">
+			<arg line="${xml.people.marshall}" />
+			<arg line="XML" />
+			<classpath>
+				<fileset dir="${lib.dir}">
 					<include name="**/*.jar" />
 					<include name="*.jar" />
 				</fileset>
-	        </classpath>
-	    </java>
+			</classpath>
+		</java>
 	</target>
 	<target name="execute.marshallJSON">
-	    <echo message="-> Marshalling to JSON file" />
-	    <echo message="" />
-	    <java classname="marshalling.JAXBMarshaller"
-	        classpath="${build.dir}">
-	        <arg line="JSON" />
-	        <classpath>
-	            <fileset dir="${lib.dir}">
+		<echo message="-> Marshalling to JSON file (Saving to: ${json.people.marshall})" />
+		<echo message="" />
+		<java classname="marshalling.JAXBMarshaller" classpath="${build.dir}">
+			<arg line="${json.people.marshall}" />
+			<arg line="JSON" />
+			<classpath>
+				<fileset dir="${lib.dir}">
 					<include name="**/*.jar" />
 					<include name="*.jar" />
 				</fileset>
-	        </classpath>
-	    </java>
+			</classpath>
+		</java>
 	</target>
-	
+
 	<target name="execute.unmarshallXML">
-	    <echo message="-> Unmarshalling XML file" />
-	    <echo message="" />
-	    <java classname="marshalling.JAXBUnMarshaller"
-	        classpath="${build.dir}">
-	        <arg line="JSON" />
-	        <classpath>
-	            <fileset dir="${lib.dir}">
+		<echo message="-> Unmarshalling XML file (Reading from: ${xml.people})" />
+		<echo message="" />
+		<java classname="marshalling.JAXBUnMarshaller" classpath="${build.dir}">
+   			<arg line="${xml.people}" />
+			<arg line="JSON" />
+			<classpath>
+				<fileset dir="${lib.dir}">
 					<include name="**/*.jar" />
 					<include name="*.jar" />
 				</fileset>
-	        </classpath>
-	    </java>
+			</classpath>
+		</java>
 	</target>
-	<target name="execute.evaluation" depends="compile,execute.printAllPeople,execute.printHealthProfile,execute.printByWeight,execute.marshallXML,execute.marshallJSON,execute.unmarshallXML">
+	<target name="execute.evaluation"
+		depends="compile,execute.printAllPeople,execute.printHealthProfile,execute.printByWeight,execute.marshallXML,execute.marshallJSON,execute.unmarshallXML">
 		<echo message="All done! :)" />
 	</target>
 	<target name="execute.HPJson">

@@ -78,7 +78,13 @@ public class JAXBUnMarshaller {
 	}
 
 	public static void main(String[] argv) {
-		File xmlDocument = new File("xml/people.xml");
+		String inputXMLFile = argv[0];
+		
+		if(inputXMLFile == null){
+			System.err.println("No input XML file to unmarshall was specified.");
+			return;
+		}
+		File xmlDocument = new File(inputXMLFile);
 		JAXBUnMarshaller jaxbUnmarshaller = new JAXBUnMarshaller();
 
 		jaxbUnmarshaller.unMarshall(xmlDocument);
