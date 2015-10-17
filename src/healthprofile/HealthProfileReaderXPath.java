@@ -1,6 +1,8 @@
 package healthprofile;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -52,7 +54,7 @@ public class HealthProfileReaderXPath {
 		Node node = (Node) expr.evaluate(doc, XPathConstants.NODE);
 		return node;
 	}
-	
+
 	public Node findHealthProfileByPersonId(int id) throws XPathExpressionException{
 		XPathExpression expr = xpath.compile("/people/person[@id=" + id+"]/healthprofile");
 		Node hProfile = (Node) expr.evaluate(doc, XPathConstants.NODE);
@@ -66,38 +68,38 @@ public class HealthProfileReaderXPath {
 		for(int j=0; j<names.getLength(); j++){
 			Node name = names.item(j);
 			if(name.getNodeName().equals("firstname")){
-				 firstname = name.getTextContent(); 
+				firstname = name.getTextContent(); 
 			} else if (name.getNodeName().equals("lastname")){
 				lastname = name.getTextContent();
 			}
 		}
 		return lastname+", "+firstname;
 	}
-	
+
 	public Double getWeight(int id) throws XPathExpressionException{
 		XPathExpression expr = xpath.compile("//person[@id="+id+"]/weight");
 		String res = (String) expr.evaluate(doc, XPathConstants.STRING);
 		return Double.valueOf(res);
 	}
-	
+
 	public Double getWeight(String firstname, String lastname) throws XPathExpressionException{
 		XPathExpression expr = xpath.compile("//person[firstname='"+firstname+"' and lastname='"+lastname+"']/weight");
 		String res = (String) expr.evaluate(doc, XPathConstants.STRING);
 		return Double.valueOf(res);
 	}
-	
+
 	public Double getHeight(int id) throws XPathExpressionException{
 		XPathExpression expr = xpath.compile("//person[@id="+id+"]/weight");
 		String res = (String) expr.evaluate(doc, XPathConstants.STRING);
 		return Double.valueOf(res);
 	}
-	
+
 	public Double getHeight(String firstname, String lastname) throws XPathExpressionException{
 		XPathExpression expr = xpath.compile("//person[firstname='"+firstname+"' and lastname='"+lastname+"']/weight");
 		String res = (String) expr.evaluate(doc, XPathConstants.STRING);
 		return Double.valueOf(res);
 	}
-	
+
 
 	public NodeList getPersonsByWeight(String op, Double weight) throws XPathExpressionException {
 		//do the actual searching now
@@ -116,9 +118,9 @@ public class HealthProfileReaderXPath {
 	public void printAllPeople(){
 		System.out.println("Printing all people in "+XML_LOCATION);
 
-		System.out.println ("\n-----------------------------");
-	    System.out.format("%s%10s%15s%15s%15s%15s%10s%10s", "ID", "Last Name", "First Name", "Birthdate", "Last Update", "Weight", "Height", "BMI");
-	    System.out.println ("\n-----------------------------");
+		System.out.println ("\n-----------------------------------------------------------------------------------------------------");
+		System.out.format("%5s%20s%20s%15s%15s%15s%10s%10s", "ID", "First Name", "Last Name", "Birthdate", "Last Update", "Weight", "Height", "BMI");
+		System.out.println ("\n-----------------------------------------------------------------------------------------------------");
 
 		try {
 			NodeList persons = getAllPeople();
@@ -127,37 +129,58 @@ public class HealthProfileReaderXPath {
 			System.err.println("Error printing all persons");
 		}
 	}
-	
+
 	private void printPeople(NodeList people){
 		for(int k=0; k<people.getLength(); k++){
 			Node person = people.item(k);
 			printPerson(person);
 		}
 	}
-	
+
 	private void printPerson(Node person){
+		String id="", first="", last="", dob="", update="", bmi="", weight="", height="";
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
 
 		NamedNodeMap attr = person.getAttributes();
 		if(attr != null){
-			System.out.println("ID: "+attr.getNamedItem("id").getTextContent());
+			id = attr.getNamedItem("id").getTextContent();
 		}
 		NodeList personDetails = person.getChildNodes();
 		for(int j=0; j<personDetails.getLength(); j++){
 			Node detail = personDetails.item(j);
 			if (detail.getNodeName().equals("firstname")){
-				System.out.println("First Name: "+detail.getTextContent());
+				first = detail.getTextContent();
 			} else if (detail.getNodeName().equals("lastname")){
-				System.out.println("Last Name: "+detail.getTextContent());
+				last = detail.getTextContent();
 			} else if (detail.getNodeName().equals("birthdate")){
-				System.out.println("Date of Birth: "+detail.getTextContent());
+				try {
+					dob = fmt.format(fmt.parse(detail.getTextContent()));
+				} catch (ParseException e) {
+					
+				}
 			}else if (detail.getNodeName().equals("healthprofile")){
-				System.out.println("Health Profile:");
-				printHealthProfile(detail);
+				NodeList hpDetails = detail.getChildNodes();
+				for(int k=0; k<hpDetails.getLength(); k++){
+					Node hpDetail = hpDetails.item(k);
+					if(hpDetail.getNodeName().equals("lastupdate")){
+						try {
+							update = fmt.format(fmt.parse(hpDetail.getTextContent()));
+						} catch (ParseException e) {
+							
+						}
+					} else if(hpDetail.getNodeName().equals("weight")){
+						weight = hpDetail.getTextContent();
+					} else if(hpDetail.getNodeName().equals("height")){
+						height = hpDetail.getTextContent();
+					} else if(hpDetail.getNodeName().equals("bmi")){
+						bmi = hpDetail.getTextContent();
+					}
+				}
 			}
 		}
-		System.out.println("=========");
+		System.out.println(String.format("%5s%20s%20s%15s%15s%15s%10s%10s", id, first, last, dob, update, weight, height, bmi));
 	}
-	
+
 	public void printPeopleByWeight(String query){
 		String op = query.substring(0, 1);
 		if(!op.equals(">") && !op.equals("<") && !op.equals("=")) {
@@ -172,7 +195,7 @@ public class HealthProfileReaderXPath {
 			System.out.println("Invalid parameter. Was expecting a number, encountered: '"+qWeight+"'");
 			return;
 		}
-		
+
 		try {
 			System.out.println(String.format("People who weigh %s%.2fkg",op,weight));
 			NodeList people = getPersonsByWeight(op, weight);
@@ -183,7 +206,7 @@ public class HealthProfileReaderXPath {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	public void printHealthProfile(int idPerson){
 		try {
 			Node healthProfile = findHealthProfileByPersonId(idPerson);
@@ -214,7 +237,7 @@ public class HealthProfileReaderXPath {
 			}
 		}
 	}
-	
+
 	/**
 	 * The health profile reader gets information from the command line about
 	 * weight and height and calculates the BMI of the person based on this
@@ -230,10 +253,10 @@ public class HealthProfileReaderXPath {
 			System.err.println("No command specified.");
 			return;
 		}
-		
+
 		HealthProfileReaderXPath reader = new HealthProfileReaderXPath();
 		reader.loadXML();
-		
+
 		if(command.equals("printAll")){
 			reader.printAllPeople();
 		} else if (command.equals("printHealthProfile")){
