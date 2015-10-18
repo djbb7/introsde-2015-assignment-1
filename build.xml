@@ -49,6 +49,7 @@
 	<property name="lib.dir" value="lib" />
 	<property name="xjc.package" value="marshalling.generated" />
 	<property name="xml.people" value="xml/people.xml" />
+	<property name="xsd.people" value="xml/people.xsd" />
 	<property name="json.people.marshall" value="marshalled.people.json" />
 	<property name="xml.people.marshall" value="marshalled.people.xml" /> 
 
@@ -210,6 +211,7 @@
 		<echo message="" />
 		<java classname="marshalling.JAXBUnMarshaller" classpath="${build.dir}">
    			<arg line="${xml.people}" />
+   			<arg line=${xsd.people}" />
 			<arg line="JSON" />
 			<classpath>
 				<fileset dir="${lib.dir}">
