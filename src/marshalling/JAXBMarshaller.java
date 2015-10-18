@@ -33,6 +33,9 @@ public class JAXBMarshaller {
 	private marshalling.generated.ObjectFactory factory;
 	private PeopleType people;
 	
+	/**
+	 * Set up people database and JAXB objects.
+	 */
 	public void initialize(){
 		try{
 			JAXBContext jaxbContext = JAXBContext.newInstance("marshalling.generated");
