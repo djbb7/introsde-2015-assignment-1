@@ -116,6 +116,7 @@ public class JAXBMarshaller {
 			return;
 		}
 		JAXBMarshaller jaxbMarshaller = new JAXBMarshaller();
+		jaxbMarshaller.initialize();
 
 		if(command.equals("XML")){
 			jaxbMarshaller.generateXMLDocument(new File(saveDocument));

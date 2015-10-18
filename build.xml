@@ -211,8 +211,7 @@
 		<echo message="" />
 		<java classname="marshalling.JAXBUnMarshaller" classpath="${build.dir}">
    			<arg line="${xml.people}" />
-   			<arg line=${xsd.people}" />
-			<arg line="JSON" />
+   			<arg line="${xsd.people}" />
 			<classpath>
 				<fileset dir="${lib.dir}">
 					<include name="**/*.jar" />
