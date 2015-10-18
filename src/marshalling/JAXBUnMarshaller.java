@@ -59,7 +59,7 @@ public class JAXBUnMarshaller {
 					prettyUpdate = fmt.format(fmt.parse(person.getHealthprofile().getLastupdate().toString()));
 				} catch (ParseException e){
 				}
-					System.out.println(String.format("%5d%20s%20s%15s%15s%15s%10s%10s", 
+					System.out.println(String.format("%5d%20s%20s%15s%15s%15s%10s%10.2f", 
 						person.getId(), 
 						person.getFirstname(), 
 						person.getLastname(), 
@@ -67,7 +67,7 @@ public class JAXBUnMarshaller {
 						prettyUpdate, 
 						person.getHealthprofile().getWeight(),
 						person.getHealthprofile().getHeight(), 
-						person.getHealthprofile().getBmi()));
+						person.getHealthprofile().getBmi().floatValue()));
 
 			}
 		} catch (JAXBException e) {

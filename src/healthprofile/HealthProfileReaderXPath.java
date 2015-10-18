@@ -262,7 +262,7 @@ public class HealthProfileReaderXPath {
 				}
 			}
 		}
-		System.out.println(String.format("%5s%20s%20s%15s%15s%15s%10s%10s", id, first, last, dob, update, weight, height, bmi));
+		System.out.println(String.format("%5s%20s%20s%15s%15s%15s%10s%10s", id, first, last, dob, update, weight, height, bmi.substring(0, bmi.indexOf(".")+3)));
 	}
 
 	/**
@@ -331,7 +331,7 @@ public class HealthProfileReaderXPath {
 						bmi = hpDetail.getTextContent();
 					}
 				}
-				System.out.println(String.format("%15s%15s%10s%10s", update, weight, height, bmi));
+				System.out.println(String.format("%15s%15s%10s%10s", update, weight, height,bmi.substring(0, bmi.indexOf(".")+3)));
 
 			}
 		} catch (XPathExpressionException e) {
