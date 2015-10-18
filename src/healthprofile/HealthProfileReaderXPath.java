@@ -350,9 +350,9 @@ public class HealthProfileReaderXPath {
 	public static void main(String[] args) throws ParserConfigurationException, SAXException,
 	IOException, XPathExpressionException {
 		if(args.length <2){
-			System.out.println("Please specify xml location and command to be executed.");
-			System.out.println("Example: java HealthProfileReaderXPath xml/people.xml printAll");
-			System.out.println("\nValid commands: printAll, printHealthProfile <id>, printByWeight '<condition>'");
+			System.err.println("Please specify xml location and command to be executed.");
+			System.err.println("Example: java HealthProfileReaderXPath xml/people.xml printAll");
+			System.err.println("\nValid commands: printAll, printHealthProfile <id>, printByWeight '<condition>'");
 			return;
 		}
 		HealthProfileReaderXPath.XML_LOCATION = args[0];
@@ -365,9 +365,17 @@ public class HealthProfileReaderXPath {
 		if(command.equals("printAll")){
 			reader.printAllPeople();
 		} else if (command.equals("printHealthProfile")){
+			if(args.length<3){
+				System.err.println("Please specify the id of the person to look for.");
+				return;
+			}
 			int ID = Integer.valueOf(args[2]);
 			reader.printHealthProfile(ID);
 		} else if (command.equals("printByWeight")){
+			if(args.length<3){
+				System.err.println("Please specify the search condition. E.g. '<90'.");
+				return;
+			}
 			reader.printPeopleByWeight(args[2]);
 		}
 
