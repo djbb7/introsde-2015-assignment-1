@@ -1,6 +1,9 @@
 package model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -8,6 +11,9 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 // XmlRootElement defines the root element of the XML tree to which this class will be serialized
 // --> <person> ... </person> 
@@ -22,7 +28,7 @@ public class Person {
 	// XmlElement indicates the element to use for this field. Only used if the name in XML will be different than that in the class
 	@XmlElement(name="healthprofile")
 	private HealthProfile hProfile;	
-	private String birthdate;
+	private XMLGregorianCalendar birthdate;
 	// XmlAttribute indicates that this field will be serialized as an attribute
 	@XmlAttribute(name="id")
 	private Long personId;
@@ -50,7 +56,7 @@ public class Person {
 
 		// setting personId to a random number between 1 and 9999
 		this.personId = Math.round(Math.floor(Math.random()*9998)+1); // Solution to Exercise #01-1d
-		this.birthdate = this.getRandomDate();
+		this.setBirthdate(this.getRandomDate());
 	}
 
 	public String getFirstname() {
@@ -71,11 +77,26 @@ public class Person {
 	public void setHProfile(HealthProfile hProfile) {
 		this.hProfile = hProfile;
 	}
-	public String getBirthdate() {
+	public XMLGregorianCalendar getBirthdate() {
 		return birthdate;
 	}
 	public void setBirthdate(String birthdate) {
-		this.birthdate = birthdate;
+		try {
+		GregorianCalendar calendar = new GregorianCalendar();
+		calendar.clear();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar parsedCalendar = Calendar.getInstance();
+		parsedCalendar.setTime(sdf.parse(birthdate));
+		calendar.set( parsedCalendar.get( Calendar.YEAR ), 
+                parsedCalendar.get( Calendar.MONTH ),
+                parsedCalendar.get( Calendar.DATE ) );
+		this.birthdate = DatatypeFactory.newInstance().newXMLGregorianCalendar( calendar );
+		} catch (ParseException e){
+			
+		} catch(DatatypeConfigurationException e){
+			
+		}
 	}
 	public Long getPersonId() {
 		return personId;
