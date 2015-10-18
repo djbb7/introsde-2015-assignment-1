@@ -22,38 +22,55 @@ import marshalling.generated.HealthProfileType;
 import marshalling.generated.PeopleType;
 import marshalling.generated.PersonType;
 
+/**
+ * Performs marshalling of Java PeopleType objects into XML/JSON files.
+ * @author Daniel Bruzual (https://github.com/djbb7)
+ *
+ */
 public class JAXBMarshaller {
-	public void generateXMLDocument(File xmlDocument) {
-		try {
-
+	
+	private Marshaller marshaller; 
+	private marshalling.generated.ObjectFactory factory;
+	private PeopleType people;
+	
+	public void initialize(){
+		try{
 			JAXBContext jaxbContext = JAXBContext.newInstance("marshalling.generated");
-			Marshaller marshaller = jaxbContext.createMarshaller();
+			marshaller = jaxbContext.createMarshaller();
 			marshaller.setProperty("jaxb.formatted.output", new Boolean(true));
-			marshalling.generated.ObjectFactory factory = new marshalling.generated.ObjectFactory();
-
-			PeopleType people = factory.createPeopleType();
-
+			factory = new marshalling.generated.ObjectFactory();
+	
+			people = factory.createPeopleType();
+	
+			//initialize DB with sample data
 			PersonType person1 = factory.createPersonType();
 			person1.setFirstname("George");
 			person1.setLastname("Cloney");
 			person1.setId(new BigInteger("0001"));
 			person1.setBirthdate(DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar(1950, 5, 4)));
-
+	
 			HealthProfileType healthProfile1 = factory.createHealthProfileType();
 			healthProfile1.setHeight(new BigDecimal("1.80"));
 			healthProfile1.setWeight(new BigDecimal("76"));
 			healthProfile1.setBmi(new BigDecimal("26.78"));
 			healthProfile1.setLastupdate(DatatypeFactory.newInstance().newXMLGregorianCalendar(2013, 3, 7, 12, 43, 00, 0, 0));
 			person1.setHealthprofile(healthProfile1);
-
+	
 			people.getPerson().add(person1);
+		}  catch (DatatypeConfigurationException e) {
+			System.out.println(e.toString());
+		} catch (JAXBException e) {
+			System.out.println(e.toString());
+
+		}
+	}
+	public void generateXMLDocument(File xmlDocument) {
+		try {
 			JAXBElement<PeopleType> peopleElement = factory.createPeople(people);
 			marshaller.marshal(peopleElement,
 					new FileOutputStream(xmlDocument));
 			marshaller.marshal(peopleElement, System.out);
 
-		} catch (DatatypeConfigurationException e) {
-			System.out.println(e.toString());
 		} catch (IOException e){
 			System.out.println(e.toString());
 		} catch (JAXBException e) {
@@ -65,29 +82,6 @@ public class JAXBMarshaller {
 
 	public void generateJSONDocument(File jsonDocument){
 		try {
-
-			JAXBContext jaxbContext = JAXBContext.newInstance("marshalling.generated");
-			Marshaller marshaller = jaxbContext.createMarshaller();
-			marshaller.setProperty("jaxb.formatted.output", new Boolean(true));
-			marshalling.generated.ObjectFactory factory = new marshalling.generated.ObjectFactory();
-
-			PeopleType people = factory.createPeopleType();
-
-			PersonType person1 = factory.createPersonType();
-			person1.setFirstname("George");
-			person1.setLastname("Cloney");
-			person1.setId(new BigInteger("0001"));
-
-			person1.setBirthdate(DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar(1950, 5, 4)));
-
-			HealthProfileType healthProfile1 = factory.createHealthProfileType();
-			healthProfile1.setHeight(new BigDecimal("1.80"));
-			healthProfile1.setWeight(new BigDecimal("76"));
-			healthProfile1.setBmi(new BigDecimal("26.78"));
-			healthProfile1.setLastupdate(DatatypeFactory.newInstance().newXMLGregorianCalendar(2013, 3, 7, 12, 43, 00, 0, 0));
-			person1.setHealthprofile(healthProfile1);
-
-			people.getPerson().add(person1);
 
 			// Jackson Object Mapper 
 			ObjectMapper mapper = new ObjectMapper();
@@ -104,14 +98,9 @@ public class JAXBMarshaller {
 			System.out.println(result);
 			mapper.writeValue(jsonDocument, people);
 
-		} catch (DatatypeConfigurationException e) {
-			System.out.println(e.toString());
 		} catch (IOException e){
 			System.out.println(e.toString());
-		} catch (JAXBException e) {
-			System.out.println(e.toString());
-
-		}
+		} 
 
 		
 	}

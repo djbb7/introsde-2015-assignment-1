@@ -20,8 +20,13 @@ import marshalling.generated.PersonType;
 
 import org.xml.sax.SAXException;
 
+/**
+ * Performs unmarshalling of people XML file to generated classed, based on XML schema file.
+ * @author Daniel Bruzual (https://github.com/djbb7)
+ *
+ */
 public class JAXBUnMarshaller {
-	public void unMarshall(File xmlDocument) {
+	public void unMarshall(File xmlDocument, File xmlSchema) {
 		try {
 
 			JAXBContext jaxbContext = JAXBContext.newInstance("marshalling.generated");
@@ -29,8 +34,7 @@ public class JAXBUnMarshaller {
 			Unmarshaller unMarshaller = jaxbContext.createUnmarshaller();
 			SchemaFactory schemaFactory = SchemaFactory
 					.newInstance("http://www.w3.org/2001/XMLSchema");
-			Schema schema = schemaFactory.newSchema(new File(
-					"xml/people.xsd"));
+			Schema schema = schemaFactory.newSchema(xmlSchema);
 			unMarshaller.setSchema(schema);
 			CustomValidationEventHandler validationEventHandler = new CustomValidationEventHandler();
 			unMarshaller.setEventHandler(validationEventHandler);
@@ -78,16 +82,19 @@ public class JAXBUnMarshaller {
 	}
 
 	public static void main(String[] argv) {
-		String inputXMLFile = argv[0];
-		
-		if(inputXMLFile == null){
-			System.err.println("No input XML file to unmarshall was specified.");
+		if(argv.length<2){
+			System.err.println("Please specify the XML file to be unmarshalled, followed by the XSD schema file to be used.");
 			return;
 		}
+		String inputXMLFile = argv[0];
+		String xsdFile = argv[1];
+		
+		
 		File xmlDocument = new File(inputXMLFile);
+		File xmlSchema = new File(xsdFile);
 		JAXBUnMarshaller jaxbUnmarshaller = new JAXBUnMarshaller();
 
-		jaxbUnmarshaller.unMarshall(xmlDocument);
+		jaxbUnmarshaller.unMarshall(xmlDocument, xmlSchema);
 
 	}
 

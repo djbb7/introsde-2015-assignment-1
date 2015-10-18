@@ -20,7 +20,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-
+/**
+ * Reads people from and XML file and performs operations on the dataset 
+ * by traversing the XML tree with XPATH.
+ * @author Daniel Bruzual (https://github.com/djbb7
+ *
+ */
 public class HealthProfileReaderXPath {  	
 
 	Document doc;
@@ -276,6 +281,7 @@ public class HealthProfileReaderXPath {
 			return;
 		} 
 
+		//get the comparisson value
 		String qWeight = query.substring(1).trim();
 		Double weight = Double.valueOf(qWeight);
 
