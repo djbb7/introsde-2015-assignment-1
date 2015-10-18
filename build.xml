@@ -115,6 +115,20 @@
 	</target>
 
 
+	<target name="execute.generateInitialXML">
+	    <echo message="-> Generate XML file from people database" />
+	    <echo message="" />
+	    <java classname="healthprofile.HealthProfileWriter"
+	        classpath="${build.dir}">
+	        <arg line="${xml.people}" />
+	        <classpath>
+				<fileset dir="${lib.dir}">
+					<include name="**/*.jar" />
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+	    </java>
+	</target>
 	<target name="execute.printAllPeople">
 		<echo message="-> Print all people in detail (Reading from: ${xml.people})" />
 		<echo message="" />
