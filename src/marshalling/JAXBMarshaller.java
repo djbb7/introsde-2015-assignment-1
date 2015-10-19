@@ -46,18 +46,46 @@ public class JAXBMarshaller {
 			people = factory.createPeopleType();
 	
 			//initialize DB with sample data
+			//Generate people from famous actors
 			PersonType person1 = factory.createPersonType();
 			person1.setFirstname("George");
 			person1.setLastname("Cloney");
 			person1.setId(new BigInteger("0001"));
-			person1.setBirthdate(DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar(1950, 5, 4)));
+			person1.setBirthdate(DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar(1961, 5, 6)));
 	
+			PersonType person2 = factory.createPersonType();
+			person2.setFirstname("Bradley");
+			person2.setLastname("Cooper");
+			person2.setId(new BigInteger("0002"));
+			person2.setBirthdate(DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar(1975, 1, 5)));
+			
+			PersonType person3 = factory.createPersonType();
+			person3.setFirstname("Tom");
+			person3.setLastname("Cruise");
+			person3.setId(new BigInteger("0002"));
+			person3.setBirthdate(DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar(1962, 7, 3)));
+			
+			//HealthProfile for the different actors
 			HealthProfileType healthProfile1 = factory.createHealthProfileType();
 			healthProfile1.setHeight(new BigDecimal("1.80"));
 			healthProfile1.setWeight(new BigDecimal("76"));
 			healthProfile1.setBmi(new BigDecimal("26.78"));
 			healthProfile1.setLastupdate(DatatypeFactory.newInstance().newXMLGregorianCalendar(2013, 3, 7, 12, 43, 00, 0, 0));
 			person1.setHealthprofile(healthProfile1);
+			
+			HealthProfileType healthProfile2 = factory.createHealthProfileType();
+			healthProfile2.setHeight(new BigDecimal("1.85"));
+			healthProfile2.setWeight(new BigDecimal("80"));
+			healthProfile2.setBmi(new BigDecimal("26.78"));
+			healthProfile2.setLastupdate(DatatypeFactory.newInstance().newXMLGregorianCalendar(2014, 3, 5, 12, 43, 00, 0, 0));
+			person2.setHealthprofile(healthProfile2);
+			
+			HealthProfileType healthProfile3 = factory.createHealthProfileType();
+			healthProfile3.setHeight(new BigDecimal("1.70"));
+			healthProfile3.setWeight(new BigDecimal("65"));
+			healthProfile3.setBmi(new BigDecimal("26.78"));
+			healthProfile3.setLastupdate(DatatypeFactory.newInstance().newXMLGregorianCalendar(2012, 2, 4, 12, 43, 00, 0, 0));
+			person3.setHealthprofile(healthProfile3);
 	
 			people.getPerson().add(person1);
 		}  catch (DatatypeConfigurationException e) {
