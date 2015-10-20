@@ -21,15 +21,19 @@ As this project is part of an assignment for the lecture. This section describes
 ###Based on Lab 3
 
 1. Use xpath to implement methods like getWeight and getHeight:
+
 	`xpath/PersonReaderXPath.java` implements these methods. For each case two methods were developed. They take either the id of the person, or the <firstname, lastname> and use XPATH to get the required person.
 
 2. Make a function that prints all people in the list with detail:
+
 	`xpath/PersonReaderXPath.java` contains the method `printAllPeople()` which gets the people node using XPATH and then traverses the tree using methods like `getChildNodes()`.
 
 3. Make a function that accepts id as parameter and prints the HealthProfile of the person with that id:
+
 	`xpath/PersonReaderXPath.java` contains the methods `findHealthProfileByPersonId()` and `printHealthProfile()` which fetch (using XPATH) and print the required health profile.
 
 4. A function which accepts a weight and an operator (=, > , <) as parameters and prints people that fulfill that condition (i.e., >80Kg, =75Kg, etc.):
+
 	`xpath/PersonReaderXPath.java` contains the methods `getPersonsbyWeight()` and `printPeopleByWeight()` which fetch (using XPATH) the people that match the condition and print it to the screen.
 
 ### Based on Lab 4
