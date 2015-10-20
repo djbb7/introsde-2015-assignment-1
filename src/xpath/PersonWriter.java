@@ -1,4 +1,4 @@
-package healthprofile;
+package xpath;
 
 import java.io.File;
 
@@ -10,7 +10,7 @@ import model.HealthProfile;
 import model.Person;
 import dao.PeopleStore;
 
-public class HealthProfileWriter {  	
+public class PersonWriter {  	
 	public static PeopleStore people = new PeopleStore();
 
 	public static void initializeDB() {

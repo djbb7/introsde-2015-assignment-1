@@ -133,7 +133,7 @@
 	<target name="execute.printAllPeople">
 		<echo message="-> Print all people in detail (Reading from: ${xml.people})" />
 		<echo message="" />
-		<java classname="healthprofile.HealthProfileReaderXPath"
+		<java classname="xpath.PersonReaderXPath"
 			classpath="${build.dir}">
 			<arg line="${xml.people}" />
 			<arg line="printAll" />
@@ -148,7 +148,7 @@
 	<target name="execute.printHealthProfile">
 		<echo message="-> Print Health Profile for person with ID=5 (Reading from: ${xml.people})" />
 		<echo message="" />
-		<java classname="healthprofile.HealthProfileReaderXPath"
+		<java classname="xpath.PersonReaderXPath"
 			classpath="${build.dir}">
 			<arg line="${xml.people}" />
 			<arg line="printHealthProfile" />
@@ -164,7 +164,7 @@
 	<target name="execute.printByWeight">
 		<echo message="-> Print all people with Weight&gt;90 (Reading from: ${xml.people})" />
 		<echo message="" />
-		<java classname="healthprofile.HealthProfileReaderXPath"
+		<java classname="xpath.PersonReaderXPath"
 			classpath="${build.dir}">
 			<arg line="${xml.people}" />
 			<arg line="printByWeight" />

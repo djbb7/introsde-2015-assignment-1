@@ -1,4 +1,4 @@
-package healthprofile;
+package xpath;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -26,13 +26,13 @@ import org.xml.sax.SAXException;
  * @author Daniel Bruzual (https://github.com/djbb7
  *
  */
-public class HealthProfileReaderXPath {  	
+public class PersonReaderXPath {  	
 
 	Document doc;
 	XPath xpath;
 	public static String XML_LOCATION;
 
-	public HealthProfileReaderXPath(){
+	public PersonReaderXPath(){
 		//For proper parsing of decimal numbers
 		Locale.setDefault(Locale.US);
 	}
@@ -124,6 +124,7 @@ public class HealthProfileReaderXPath {
 			return null;
 		return Double.valueOf(res);
 	}
+	
 
 	/**
 	 * Get the weight of a person by full name.
@@ -361,11 +362,11 @@ public class HealthProfileReaderXPath {
 			System.err.println("\nValid commands: printAll, printHealthProfile <id>, printByWeight '<condition>'");
 			return;
 		}
-		HealthProfileReaderXPath.XML_LOCATION = args[0];
+		PersonReaderXPath.XML_LOCATION = args[0];
 		String command = args[1];
 
 
-		HealthProfileReaderXPath reader = new HealthProfileReaderXPath();
+		PersonReaderXPath reader = new PersonReaderXPath();
 		reader.loadXML();
 
 		if(command.equals("printAll")){
