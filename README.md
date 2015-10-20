@@ -18,7 +18,7 @@ The project is divided into 3 packages.
 
 As this project is part of an assignment for the lecture. This section describes how each individual task was solved.
 
-- ###Based on Lab 3
+###Based on Lab 3
 
 1. Use xpath to implement methods like getWeight and getHeight:
 	`xpath/PersonReaderXPath.java` implements these methods. For each case two methods were developed. They take either the id of the person, or the <firstname, lastname> and use XPATH to get the required person.
@@ -32,7 +32,7 @@ As this project is part of an assignment for the lecture. This section describes
 4. A function which accepts a weight and an operator (=, > , <) as parameters and prints people that fulfill that condition (i.e., >80Kg, =75Kg, etc.):
 	`xpath/PersonReaderXPath.java` contains the methods `getPersonsbyWeight()` and `printPeopleByWeight()` which fetch (using XPATH) the people that match the condition and print it to the screen.
 
-- ### Based on Lab 4
+### Based on Lab 4
 
 1. Create the XML schema XSD file for the example XML document of people:
 	The file is `xml/people.xsd` and follows the 'Salami Slice' approach to XSD definitions, that is, types are defined as root elements.
@@ -57,9 +57,16 @@ ant execute.evaluation
 There are several targets that allow you to execute the tasks in a seperate manner.
 
 `execute.generateInitialXML` created the initial people.xml file with 20 persons.
+
 `execute.printAllPeople` prints the table with all the people.
+
 `execute.printHealthProfile` prints the health profile for person with id=5.
+
 `execute.printByWeight` prints the information for all the people with weight>90.
+
 `execute.marshallXML` marshalls an object with 3 persons into XML. Saves it to file marshalled.people.xml and prints it on screen.
-`execute.marshallJSON` marshalls an object with 3 persons into JSON. Saves it to file marshalled.people.json and prints it on screen.
+
+`execute.marshallJSON` marshalls an object with 3 persons into JSON. Saves it to file marshalled.people.json and prints it on 
+screen.
+
 `execute.unmarshallXML` unmarshalls the contents of people.xml and prints them on screen.
