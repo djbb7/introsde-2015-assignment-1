@@ -18,25 +18,28 @@ The project is divided into 3 packages.
 
 As this project is part of an assignment for the lecture. This section describes how each individual task was solved.
 
-*Based on Lab 3
-1.Use xpath to implement methods like getWeight and getHeight:
+- ###Based on Lab 3
+1. Use xpath to implement methods like getWeight and getHeight:
 	`xpath/PersonReaderXPath.java` implements these methods. For each case two methods were developed. They take either the id of the person, or the <firstname, lastname> and use XPATH to get the required person.
 
-2.Make a function that prints all people in the list with detail:
+2. Make a function that prints all people in the list with detail:
 	`xpath/PersonReaderXPath.java` contains the method `printAllPeople()` which gets the people node using XPATH and then traverses the tree using methods like `getChildNodes()`.
 
-3.Make a function that accepts id as parameter and prints the HealthProfile of the person with that id:
+3. Make a function that accepts id as parameter and prints the HealthProfile of the person with that id:
 	`xpath/PersonReaderXPath.java` contains the methods `findHealthProfileByPersonId()` and `printHealthProfile()` which fetch (using XPATH) and print the required health profile.
-4.A function which accepts a weight and an operator (=, > , <) as parameters and prints people that fulfill that condition (i.e., >80Kg, =75Kg, etc.):
+	
+4. A function which accepts a weight and an operator (=, > , <) as parameters and prints people that fulfill that condition (i.e., >80Kg, =75Kg, etc.):
 	`xpath/PersonReaderXPath.java` contains the methods `getPersonsbyWeight()` and `printPeopleByWeight()` which fetch (using XPATH) the people that match the condition and print it to the screen.
 
-*Based on Lab 4
-1.Create the XML schema XSD file for the example XML document of people:
+- ###Based on Lab 4
+1. Create the XML schema XSD file for the example XML document of people:
 	The file is `xml/people.xsd` and follows the 'Salami Slice' approach to XSD definitions, that is, types are defined as root elements.
-2.Write a java application that does the marshalling and un-marshalling using classes generated with JAXB XJC:
+
+2. Write a java application that does the marshalling and un-marshalling using classes generated with JAXB XJC:
 	`marshalling/JAXBMarshaller.java` does the marshalling to XML. It prints the output on screen, and saves it to a file specified as a parameter.
 	`marshalling/JAXBUnMarshaller.java` does the unmarshalling from XML. The location of the XML file is specified as a parameter.
-3.Make your java application to convert also JSON:
+
+3. Make your java application to convert also JSON:
 	`marshalling/JAXBMarshaller.java` does the marshalling into JSON. It prints the output on screen, and saves it to a file specified as a parameter.
 
 
