@@ -88,6 +88,8 @@ public class JAXBMarshaller {
 			person3.setHealthprofile(healthProfile3);
 	
 			people.getPerson().add(person1);
+			people.getPerson().add(person2);
+			people.getPerson().add(person3);
 		}  catch (DatatypeConfigurationException e) {
 			System.out.println(e.toString());
 		} catch (JAXBException e) {
@@ -124,7 +126,8 @@ public class JAXBMarshaller {
 			mapper.registerModule(module);
 			mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 			mapper.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
-			mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false); 
+			mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+			
 
 			String result = mapper.writeValueAsString(people);
 			System.out.println(result);
