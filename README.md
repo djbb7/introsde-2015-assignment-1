@@ -10,7 +10,7 @@ The project is divided into 3 packages.
 
 `xpath`: Inside this package is the class for reading from people.xml and extracting user information using xpath, namely `PersonReaderXPath.java`. There is also a class file (PersonWriter.java) which was used for generating the initial people.xml file.
 
-`marshalling`: This package contains the classes necessary for Marshalling from an object representation to XML/JSON using JAXB/Jackson (`JAXBMarshaller.java`). It also contains the classes for Unmarshalling from an XML representation directly into java objects. Note that for either of these classes to work, first the according classes have to be generated from the people.xsd file. See the targets section for instructions.
+`marshalling`: This package contains the classes necessary for Marshalling from an object representation to XML/JSON using JAXB/Jackson (`JAXBMarshaller.java`). It also contains the classes for Unmarshalling from an XML representation directly into java objects. Note that for either of these classes to work, first the according classes have to be generated from the `people.xsd` file. See the targets section for instructions.
 
 `model`: Representations of the Person, People and HealthProfile objects which are used for the generation of the initial XML file.
 
@@ -39,13 +39,17 @@ As this project is part of an assignment for the lecture. This section describes
 ### Based on Lab 4
 
 1. Create the XML schema XSD file for the example XML document of people:
+
 	The file is `xml/people.xsd` and follows the 'Salami Slice' approach to XSD definitions, that is, types are defined as root elements.
 
 2. Write a java application that does the marshalling and un-marshalling using classes generated with JAXB XJC:
+
 	`marshalling/JAXBMarshaller.java` does the marshalling to XML. It prints the output on screen, and saves it to a file specified as a parameter.
+
 	`marshalling/JAXBUnMarshaller.java` does the unmarshalling from XML. The location of the XML file is specified as a parameter.
 
 3. Make your java application to convert also JSON:
+
 	`marshalling/JAXBMarshaller.java` does the marshalling into JSON. It prints the output on screen, and saves it to a file specified as a parameter.
 
 
