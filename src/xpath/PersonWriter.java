@@ -7,8 +7,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
 import model.HealthProfile;
+import model.PeopleStore;
 import model.Person;
-import dao.PeopleStore;
 
 public class PersonWriter {  	
 	public static PeopleStore people = new PeopleStore();
